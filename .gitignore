@@ -1,0 +1,17 @@
+*.js
+!jest.config.js
+*.d.ts
+node_modules
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+frontEndContent/react-demo/build
+frontEndContent/react-demo/node_modules
+
+lib/node_modules
+
+cdk.out
+cdk.json
+
