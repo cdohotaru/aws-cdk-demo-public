@@ -8,14 +8,14 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "synth": "cdk synthesize"
   },
   "devDependencies": {
     "@types/jest": "^29.5.4",
     "@types/node": "20.5.7",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
-    "aws-cdk": "2.94.0",
+    "aws-cdk": "2.95.1",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-github": "^4.10.0",
@@ -27,7 +27,7 @@
     "typescript": "~5.2.2"
   },
   "dependencies": {
-    "aws-cdk-lib": "2.94.0",
+    "aws-cdk-lib": "2.95.1",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"
   }

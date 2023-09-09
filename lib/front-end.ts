@@ -17,6 +17,12 @@ export class FrontEndStack extends Construct {
 
         const distributionResult = this.createDistribution();
         this.deploySiteContent(distributionResult.bucket, distributionResult.distribution);
+
+        new CfnOutput(this, 'DistributionDomainName', {
+            value: distributionResult.distribution.domainName,
+            description: 'Distribution Domain Name', // Optional
+            exportName: 'DistributionDomainName', // Registers a CloudFormation export named "DistributionDomainName"
+        });
     }
 
     private createDistribution = (): { distribution: Distribution; bucket: Bucket; } => {
@@ -31,7 +37,7 @@ export class FrontEndStack extends Construct {
         myBucket.addToResourcePolicy(new PolicyStatement({
             actions: ['s3:GetObject'],
             resources: [myBucket.arnForObjects('*')],
-            principals: [new CanonicalUserPrincipal(cloudfrontOAI.cloudFrontOriginAccessIdentityS3CanonicalUserId)],
+            principals: [new CanonicalUserPrincipal(cloudfrontOAI.cloudFrontOriginAccessIdentityS3CanonicalUserId)],            
         }));
 
         const s3Origin = new S3Origin(myBucket);        

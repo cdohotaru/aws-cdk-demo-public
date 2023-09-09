@@ -18,7 +18,7 @@ In the root folder (you will need an AWS account, if the AWS account is not conf
 - npm run build
 - cdk bootstrap 
 or 
-- cdk bootstrap aws://YOUR_ACOCUNT_NUMBER/DESIRED_AWS_REGION
+- cdk bootstrap aws://YOUR_ACCOUNT_NUMBER/DESIRED_AWS_REGION
 
 ### 3 Make the first deployment 
 

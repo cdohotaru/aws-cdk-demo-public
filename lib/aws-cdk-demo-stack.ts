@@ -16,8 +16,8 @@ export class AwsCdkDemoStack extends Stack {
 
         Tags.of(frontEnd).add('Module', 'FrontEnd');
 
-        // const pipeline = new MyPipelineStack(this, 'Pipeline');
+        const pipeline = new MyPipelineStack(this, 'Pipeline');
 
-        // Tags.of(pipeline).add('Module', 'Pipeline');
+        Tags.of(pipeline).add('Module', 'Pipeline');
     }
 }
