@@ -1,0 +1,121 @@
+{
+    "env": {
+        "node": true
+    },
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
+        "github"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
+    "rules": {
+        "keyword-spacing": [
+            "error",
+            {
+                "after": true
+            }
+        ],
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "space-before-blocks": [
+            "error",
+            "always"
+        ],
+        "no-console": "error",
+        "eol-last": [
+            "error",
+            "always"
+        ],
+        "block-spacing": "error",
+        "arrow-body-style": [
+            "error",
+            "as-needed"
+        ],
+        "comma-dangle": [
+            "error",
+            "always-multiline"
+        ],
+        "function-paren-newline": [
+            "error",
+            "multiline-arguments"
+        ],
+        "operator-linebreak": [
+            "error",
+            "after"
+        ],
+        "indent": "off",
+        "github/array-foreach": "warn",
+        "@typescript-eslint/indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1,
+                "ignoredNodes": [
+                    "TSTypeParameterInstantiation",
+                    "Decorator"
+                ]
+            }
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "brace-style": [
+            "error",
+            "1tbs",
+            {
+                "allowSingleLine": true
+            }
+        ],
+        "max-len": [
+            "warn",
+            {
+                "ignorePattern": "^import [^,]+ from |^export | implements ",
+                "code": 165
+            }
+        ],
+        "id-blacklist": "off",
+        "id-match": "off",
+        "no-bitwise": "off",
+        "no-useless-escape": "off",
+        "no-multiple-empty-lines": [
+            "error",
+            {
+                "max": 2
+            }
+        ],
+        "@typescript-eslint/dot-notation": "off",
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/explicit-member-accessibility": "off",
+        "@typescript-eslint/member-delimiter-style": [
+            "warn",
+            {
+                "multiline": {
+                    "delimiter": "semi",
+                    "requireLast": true
+                },
+                "singleline": {
+                    "delimiter": "semi",
+                    "requireLast": true
+                }
+            }
+        ]
+    }
+}
