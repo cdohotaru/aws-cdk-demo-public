@@ -8,27 +8,48 @@ import { useSelector } from 'react-redux';
 
 import * as constants from './constants';
 import { useAppDispatch } from './store/hooks';
-import { calculateAsync } from './features/calculator/calculatorSlice';
+import { calculateAsync, setParams } from './features/calculator/calculatorSlice';
 
 function App() {
   const dispatch = useAppDispatch();
-
+  
   const [arg1, setArg1] = React.useState(0);
   const [arg2, setArg2] = React.useState(0);
   const [operation, setOperation] = React.useState(constants.Operation.Addition);
 
-  const { calculator } = useSelector((state: any) => state);
+  const { result, error, canCalculate } = useSelector((state: any) => state.calculator);
 
-  const handleArg1Change = (event: any) => {
-      setArg1(event.target.value);
+  const handleArg1Change = (event: any) => {      
+      let value = Number(event.target.value);
+      setArg1(value);
+      dispatch(setParams({
+        arg1: value,
+        arg2,
+        operation
+      }));
   }
 
-  const handleArg2Change = (event: any) => {
-      setArg2(event.target.value);
+  const handleArg2Change = (event: any) => {      
+    let value = Number(event.target.value);
+      setArg2(value);
+      dispatch(setParams(
+        {
+          arg1,
+          arg2: value,
+          operation
+        }
+      ));
   }
 
-  const handleOperationChange = (event: any) => {
-    setOperation(event.target.value);
+  const handleOperationChange = (event: any) => {    
+
+    let selectedOp = event.target.value as constants.Operation;
+      setOperation(selectedOp);
+      dispatch(setParams({
+          arg1,
+          arg2,
+          operation: selectedOp        
+      }));    
   }
 
   const handleCalculateClick = () => {
@@ -45,19 +66,17 @@ function App() {
     return constants.operations.map((opp: constants.Operation) => <MenuItem key={`${opp}`} value={opp}>{`${opp}`}</MenuItem>);
   }
 
-  const renderResult = () => {
-
-    if (!calculator) {
-      return null;
-    }
+  const renderResult = () => {    
   
-    if (calculator.error) {
-      return <p>There was an error trying to calculate: {calculator.error}</p>
+    if (error) {
+      return <p>There was an error trying to calculate: {error}</p>
     }
 
-    if (calculator.result) {
-      return <p>The result of the operation is: {calculator.result}</p>
+    if (result !== null) {
+      return <p>The result of the operation is: {result}</p>
     }
+
+    return null;
   }
 
   return (
@@ -97,15 +116,16 @@ function App() {
               {renderOperations()}
           </Select>
           <Button
+              disabled={canCalculate === false}
               className="numerical-input"                
               onClick={handleCalculateClick}          
           >
            Calculate
-          </Button>
-          <div>
+          </Button>          
+        </div>
+        <div>
             {renderResult()}
           </div>
-        </div>
         <a
           className="App-link"
           href="https://medium.com/@cdohotaru/an-aws-cdk-demo-with-api-gateway-lambda-react-and-a-pipeline-to-rule-them-all-afef4795982b"
