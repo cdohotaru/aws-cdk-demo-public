@@ -15,7 +15,6 @@ Inside frontEndContent/react-demo folder
 ### 2 Bootstrap the deployment 
 
 In the root folder (you will need an AWS account, if the AWS account is not configured locally run aws configure)
-- npm run build
 - cdk bootstrap 
 or 
 - cdk bootstrap aws://YOUR_ACCOUNT_NUMBER/DESIRED_AWS_REGION

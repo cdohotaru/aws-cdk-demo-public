@@ -2,6 +2,7 @@ import { Construct } from 'constructs';
 import { CodePipeline, CodePipelineSource, ShellStep } from 'aws-cdk-lib/pipelines';
 import { RemovalPolicy, SecretValue } from 'aws-cdk-lib';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
+import { Pipeline } from 'aws-cdk-lib/aws-codepipeline';
 
 export class MyPipelineStack extends Construct {
     constructor(scope: Construct, id: string) {
@@ -17,9 +18,13 @@ export class MyPipelineStack extends Construct {
             removalPolicy: RemovalPolicy.DESTROY, // NOT recommended for production code
             autoDeleteObjects: true, // NOT recommended for production code
         });
+
+        const underlyingPipeline = new Pipeline(this, 'MyPipeline', { 
+            artifactBucket: artifactBucket,
+            pipelineName: 'MyPipeline', 
+        });
                 
-        const pipeline = new CodePipeline(this, 'Pipeline', {
-            pipelineName: 'MyPipeline',
+        const pipeline = new CodePipeline(this, 'Pipeline', {           
             dockerEnabledForSynth: true,
             dockerEnabledForSelfMutation: true,            
             synth: new ShellStep('Synth', {
@@ -31,20 +36,7 @@ export class MyPipelineStack extends Construct {
                     'npm run synth',
                 ],
             }),
-            artifactBucket: artifactBucket
-        });
-
-        // const testStage = new RunTestsStage(this, 'Testing');        
-        
-        // pipeline.addStage(testStage, {
-        //     post: [
-        //         new ShellStep('Run units tests', {
-        //             input: sourceCodeInput,
-        //             commands: [                        
-        //                 'sh ./lib/scripts/run-unit-tests.sh',                         
-        //             ],
-        //         }),
-        //     ],            
-        // });
+            codePipeline: underlyingPipeline,
+        });        
     }
 }
