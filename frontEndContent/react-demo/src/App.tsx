@@ -108,11 +108,11 @@ function App() {
         </div>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://medium.com/@cdohotaru/an-aws-cdk-demo-with-api-gateway-lambda-react-and-a-pipeline-to-rule-them-all-afef4795982b"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn more about this demo
+          Learn more about this demo from the accompanying article 
         </a>      
     </div>
   );

@@ -66,3 +66,5 @@ An AWS account is needed to run this stack. The AWS account should be configured
 See https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html for configuring an account
 
 It also helps if the CDK CLI is installed globally. An AWS Getting started page can be found here: https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html
+
+Learn more about this demo from the accompanying article: https://medium.com/@cdohotaru/an-aws-cdk-demo-with-api-gateway-lambda-react-and-a-pipeline-to-rule-them-all-afef4795982b 
