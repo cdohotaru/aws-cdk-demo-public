@@ -14,7 +14,10 @@ Inside frontEndContent/react-demo folder
 
 ### 2 Bootstrap the deployment 
 
-In the root folder (you will need an AWS account, if the AWS account is not configured locally run aws configure)
+You will need an AWS account, if the AWS account is not configured locally run aws configure
+
+In the root folder 
+- npm install
 - cdk bootstrap 
 or 
 - cdk bootstrap aws://YOUR_ACCOUNT_NUMBER/DESIRED_AWS_REGION
@@ -24,6 +27,7 @@ or
 In the root folder 
 - cdk deploy
 - note the output API endpoint in the console, you will need it in the next step
+- note the CloudFront distribution domain name, this is the app's URL 
 
 ### 4 Add the API gateway URL
 
