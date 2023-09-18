@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@reduxjs/toolkit": "^1.8.3",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.8",
     "@mui/styled-engine-sc": "^5.14.8",
     "@redux-devtools/extension": "^3.2.5",
+    "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -25,8 +25,6 @@
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
-    "redux-immutable-state-invariant": "^2.1.0",
-    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.2",
     "styled-components": "^5.3.11",
     "typescript": "^4.9.5",
@@ -55,5 +53,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/redux-immutable-state-invariant": "^2.1.2",
+    "@types/redux-logger": "^3.0.9",
+    "redux-immutable-state-invariant": "^2.1.0",
+    "redux-logger": "^3.0.6"
   }
 }
