@@ -37,9 +37,7 @@ const getCorsHeaders = () => ({
 const getBadRequestResponse = (operation: unknown) => {
     const badRequest = {
         statusCode: 400,                    
-        body: JSON.stringify({
-            message: `Unknown operation: ${operation}`,
-        }),
+        body: `Unknown operation: ${operation}`,
         headers: getCorsHeaders(),
     };
     return badRequest;
@@ -50,7 +48,7 @@ export const calculate = async (event: APIGatewayProxyEventV2): Promise<APIGatew
 
         if (!event || !event.body) {
             return {
-                statusCode: 403,
+                statusCode: 400,
                 body: 'No event received or event invalid',
             };
         }
@@ -59,7 +57,7 @@ export const calculate = async (event: APIGatewayProxyEventV2): Promise<APIGatew
 
         if (!args) {
             return {
-                statusCode: 403,
+                statusCode: 400,
                 body: 'Payload is invalid',
             };
         }
