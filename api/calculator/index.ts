@@ -1,5 +1,4 @@
-import { APIGatewayProxyEventV2, Context, APIGatewayProxyStructuredResultV2,
-} from 'aws-lambda';
+import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 import { Arguments } from './Arguments';
 
 export enum Operation {
@@ -35,7 +34,18 @@ const getCorsHeaders = () => ({
     
 });
 
-export const calculate = async (event: APIGatewayProxyEventV2, context: Context): Promise<APIGatewayProxyStructuredResultV2> => {
+const getBadRequestResponse = (operation: unknown) => {
+    const badRequest = {
+        statusCode: 400,                    
+        body: JSON.stringify({
+            message: `Unknown operation: ${operation}`,
+        }),
+        headers: getCorsHeaders(),
+    };
+    return badRequest;
+};
+
+export const calculate = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
     try {        
 
         if (!event || !event.body) {
@@ -69,8 +79,8 @@ export const calculate = async (event: APIGatewayProxyEventV2, context: Context)
             case Operation.Division:
                 result = args.firstArgument / args.secondArgument;
                 break;
-            default:
-                throw new Error(`Unknown operation: ${args.operation}`);                
+            default:                
+                return getBadRequestResponse(args.operation);
         }
         const response = {
             statusCode: 200,
